@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecureScan — Web Application Vulnerability Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo"><span class="dot"></span> SecureScan</div>
+    <nav class="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#console">Console</a>
+      <a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener">OWASP Top 10</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap" id="console">
+  <div>
+    <span class="eyebrow">● live vulnerability console</span>
+    <h1 class="headline">Find what an attacker<br>would find <em>first.</em></h1>
+    <p class="sub">SecureScan runs a non-destructive pass over a web application's headers, TLS setup, cookies, open ports, and common injection points — then hands back a plain-language report you can act on.</p>
+
+    <form class="scan-form" id="scanForm">
+      <input type="text" id="targetInput" placeholder="example.com or https://your-staging-app.com" autocomplete="off" required>
+      <button type="submit" class="scan-btn" id="scanBtn">
+        <span id="btnLabel">Run scan</span>
+      </button>
+    </form>
+    <p class="hint">Only scan applications you own or have written authorization to test.</p>
+  </div>
+
+  <div class="terminal">
+    <div class="bar"><span></span><span></span><span></span></div>
+    <div class="body" id="termBody">
+      <p class="line muted">$ securescan --target &lt;idle&gt;</p>
+      <p class="line muted">Waiting for a target to scan<span class="caret"></span></p>
+    </div>
+  </div>
+</section>
+
+<section class="steps wrap" id="how">
+  <div class="step">
+    <div class="n">01 · RECON</div>
+    <h3>Fingerprint the surface</h3>
+    <p>Resolves the host, checks the TLS certificate, and sweeps common ports to map what's exposed.</p>
+  </div>
+  <div class="step">
+    <div class="n">02 · ANALYZE</div>
+    <h3>Probe for weaknesses</h3>
+    <p>Reviews response headers, cookie flags, and sensitive paths, then sends safe test payloads for reflected XSS and SQL injection signatures.</p>
+  </div>
+  <div class="step">
+    <div class="n">03 · REPORT</div>
+    <h3>Score and prioritize</h3>
+    <p>Every finding is graded by severity with a plain-English fix, rolled up into an overall security grade.</p>
+  </div>
+</section>
+
+<section class="wrap" id="results">
+  <div id="resultsInner"></div>
+</section>
+
+<footer>
+  SecureScan — Web Application Vulnerability Assessment Platform · Built for authorized security testing only · Flask + Python backend
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
